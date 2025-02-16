@@ -21,6 +21,62 @@
         </nav>
         <div class="user-profile">👤 Perfil</div> 
     </header>
+
+    <div class="ucontainer">
+        <div class="usuario">
+            <img class="Capa" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Q12VzuNm_xEKGoL7ChO8DoaFabNpo9yAyw&s" alt="Capa do usuario">
+            <img class="Perfil" src="https://i.pinimg.com/originals/66/b3/24/66b3247f3e0ed3fa5279221874f628ac.jpg" alt="Perfil">
+            <div class="informacoes">
+                <h2>Tiago</h2>
+                <p>@altg77</p>
+                <p>📍 Camaçari, BA</p>
+                <button class="seguir">Seguir perfil</button>
+            </div>
+        </div>
+
+        <div class="detalhes">
+            <div class="descricao">
+                <h3>Descrição</h3>
+                <p>O usuário é fã de animes, mangás e séries, com preferência por histórias envolventes e personagens marcantes. Gosta de animes como Jujutsu Kaisen e Bunny Girl Senpai, que combinam ação, mistério e elementos emocionantes. Também acompanha séries como Cobra Kai e The Flash, que trazem batalhas intensas, evolução dos personagens e toques de nostalgia ou superpoderes. Seu gosto varia entre tramas sobrenaturais, heróis e artes marciais, sempre buscando histórias cativantes e dinâmicas.</p>
+        </div>
+
+        <div class="categorias">
+            <h3>Categorias Preferidas</h3>
+            <span>Shonnen</span> <span>Ação</span> <Span>Terror</Span> <span>Romance</span>
+        </div>
+
+        <div class="preferidos">
+                <h3>Meus Preferidos</h3>
+                <ol class="lista" id="lista-preferidos"></ol>
+        </div>
+
+        <div class="Assistir no ano">
+            <h3>Lista de itens que desejo assistir este ano</h3>
+            <ol class="lista" id="lista-assistir"></ol>
+        </div>
+        </div>
+
+        <h3>Indique algo para o usuario!</h3>
+        <form id="form-indicacao">
+            <label for="nome">Seu Nome:</label>
+            <input type="text" id="nome" required><br>
+            
+            <label for="categoria">Categoria:</label>
+            <select id="categoria">
+                <option value="Série">Série</option>
+                <option value="Anime">Anime</option>
+                <option value="Documentário">Documentário</option>
+                <option value="Filme">Filme</option>
+            </select><br>
+            
+            <label for="indicacao">Nome da Indicação:</label>
+            <input type="text" id="indicacao" required><br>
+            
+            <button type="submit">Enviar Sugestão</button>
+            <button type="button" id="visualizar-indicacoes">Visualizar Indicações</button>
+        </form>
+
+    </div>
     
 </body>
 </html>
