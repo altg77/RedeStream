@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Preferências de Entretenimento</title>
+    <style>
+        body {
+            background-image: url('https://animenew.com.br/wp-content/uploads/2024/09/O-que-o-final-de-Jujutsu-Kaisen-significa-para-o-manga-1-jpg.webp'); /* Substitua pelo link da sua imagem */
+            background-size: cover;
+            background-position: center;
+            color: rgb(0, 0, 0);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 800px;
+        }
+        .lista-itens {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+            list-style: none;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 350px;
+        }
+        .item img {
+            width: 80px;
+            height: 120px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, select, button {
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minhas Preferências de Entretenimento</h1>
+
+        <h2>Coisas que eu gosto de assistir:</h2>
+        <ul class="lista-itens" id="lista-preferencias"></ul>
+        
+        <h2>Lista de itens que desejo assistir este ano:</h2>
+        <ol class="lista-itens" id="lista-assistir"></ol>
+        
+        <h2>Indique algo para eu assistir!</h2>
+        <form id="form-indicacao">
+            <label for="nome">Seu Nome:</label>
+            <input type="text" id="nome" required><br>
+            
+            <label for="categoria">Categoria:</label>
+            <select id="categoria">
+                <option value="Série">Série</option>
+                <option value="Anime">Anime</option>
+                <option value="Documentário">Documentário</option>
+                <option value="Filme">Filme</option>
+            </select><br>
+            
+            <label for="indicacao">Nome da Indicação:</label>
+            <input type="text" id="indicacao" required><br>
+            
+            <button type="submit">Enviar Sugestão</button>
+            <button type="button" id="visualizar-indicacoes">Visualizar Indicações</button>
+        </form>
+    </div>
+
+    <script>
+        const TMDB_API_KEY = "94cf5c3fe8bf7f2d4c8b0df5b9adc973"; // Substitua pela sua chave TMDb
+
+        const preferencias = [
+            { nome: "The Flash", categoria: "Série" },
+            { nome: "Breaking Bad", categoria: "Série" },
+            { nome: "Jujutsu Kaisen", categoria: "Anime" },
+            { nome: "Naruto", categoria: "Anime" },
+            { nome: "Planeta Terra", categoria: "Documentário" },
+            { nome: "Cosmos", categoria: "Documentário" },
+            { nome: "Interstellar", categoria: "Filme" },
+            { nome: "O Poderoso Chefão", categoria: "Filme" }
+        ];
+
+        async function buscarImagemTMDb(nome) {
+            let url = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(nome)}`;
+            try {
+                const resposta = await fetch(url);
+                const dados = await resposta.json();
+
+                if (dados.results && dados.results.length > 0) {
+                    let imagemPath = dados.results[0].poster_path || dados.results[0].backdrop_path;
+                    if (imagemPath) {
+                        return `https://image.tmdb.org/t/p/w200${imagemPath}`;
+                    }
+                }
+                return "https://via.placeholder.com/80x120?text=Sem+Imagem";
+            } catch (erro) {
+                console.error("Erro ao buscar imagem:", erro);
+                return "https://via.placeholder.com/80x120?text=Erro";
+            }
+        }
+
+        async function carregarPreferencias() {
+            const lista = document.getElementById("lista-preferencias");
+
+            for (let item of preferencias) {
+                let imagemURL = await buscarImagemTMDb(item.nome);
+                let li = document.createElement("li");
+                li.classList.add("item");
+
+                let img = document.createElement("img");
+                img.src = imagemURL;
+                img.alt = item.nome;
+
+                let texto = document.createTextNode(`${item.nome} (${item.categoria})`);
+
+                li.appendChild(img);
+                li.appendChild(texto);
+                lista.appendChild(li);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", carregarPreferencias);
+
+        document.getElementById("form-indicacao").addEventListener("submit", function(event) {
+            event.preventDefault();
+            adicionarIndicacao();
+        });
+
+        document.getElementById("visualizar-indicacoes").addEventListener("click", function() {
+            alert("Lista de indicações atualizada!");
+        });
+
+        async function adicionarIndicacao() {
+            let categoria = document.getElementById("categoria").value;
+            let indicacao = document.getElementById("indicacao").value;
+            
+            if (indicacao.trim() !== "") {
+                let lista = document.getElementById("lista-assistir");
+                let novoItem = document.createElement("li");
+                novoItem.classList.add("item");
+                
+                let imagem = document.createElement("img");
+                imagem.alt = indicacao;
+                imagem.src = await buscarImagemTMDb(indicacao);
+                
+                novoItem.appendChild(imagem);
+                novoItem.appendChild(document.createTextNode(` ${indicacao} (${categoria})`));
+                lista.appendChild(novoItem);
+            }
+            
+            document.getElementById("indicacao").value = "";
+        }
+    </script>
+</body>
+</html>
