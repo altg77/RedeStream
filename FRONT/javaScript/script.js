@@ -26,8 +26,7 @@ const listadedesejo = [
 async function buscarImagem (nome) {
     let url = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(nome)}`;
 
-    try{
-        const r = await fetch(url);
+    const r = await fetch(url);
         const dados = await r.json();
 
         if(dados.results && dados.results > 0){
@@ -38,7 +37,6 @@ async function buscarImagem (nome) {
             }
         }
         return "https://via.placeholder.com/80x120?text=Sem+Imagem";
-    }
 }
 
 async function carregarPreferencias() {
@@ -50,11 +48,38 @@ async function carregarPreferencias() {
         li.classList.add("cp");
 
         let img = document.createElement("img");
-        
+        img.src = imagemUrl;
+        img.alt = item.nome;
+
+        let texto = document.createTextNode(`${item.nome} (${item.categoria})`);
+
+        li.appendChild(img);
+        li.appendChild(texto);
+        lista.appendChild(li);
+
     }
 }
 
-async function carregarlistadedesejo() {
+async function carregarListadedesejo() {
     const lista = document.getElementById("assistir");
-    
+
+    for (let item of preferencias) {
+        let imagemUrl = await buscarImagem(item.nome);
+        let li = document.createElement("li");
+        li.classList.add("cp");
+
+        let img = document.createElement("img");
+        img.src = imagemUrl;
+        img.alt = item.nome;
+
+        let texto = document.createTextNode(`${item.nome} (${item.categoria})`);
+
+        li.appendChild(img);
+        li.appendChild(texto);
+        lista.appendChild(li);
+
+    }
 }
+
+document.addEventListener("DOMContentLoaded", carregarPreferencias);
+document.addEventListener("DOMContentLoaded", carregarListadedesejo);
