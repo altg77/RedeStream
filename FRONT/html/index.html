@@ -50,7 +50,7 @@
                 <ol class="lista" id="lista-preferidos"></ol>
         </div>
 
-        <div class="Assistir no ano">
+        <div class="Assistir-no-ano">
             <h3>Lista de itens que desejo assistir este ano</h3>
             <ol class="lista" id="lista-assistir"></ol>
         </div>
@@ -58,10 +58,13 @@
 
         <h3>Indique algo para o usuario!</h3>
         <form id="form-indicacao">
-            <label for="nome">Seu Nome:</label>
+            <label for="indicacao">Indicação:</label>
+            <input type="text" id="indicacao" required><br>
+
+            <label for="nome">Seu nome</label>
             <input type="text" id="nome" required><br>
             
-            <label for="categoria">Categoria:</label>
+            <label for="categoria">Categoria:</label>     
             <select id="categoria">
                 <option value="Série">Série</option>
                 <option value="Anime">Anime</option>
@@ -69,11 +72,7 @@
                 <option value="Filme">Filme</option>
             </select><br>
             
-            <label for="indicacao">Nome da Indicação:</label>
-            <input type="text" id="indicacao" required><br>
-            
             <button type="submit">Enviar Sugestão</button>
-            <button type="button" id="visualizar-indicacoes">Visualizar Indicações</button>
         </form>
 
     </div>
