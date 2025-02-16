@@ -63,7 +63,7 @@ async function carregarPreferencias() {
 async function carregarListadedesejo() {
     const lista = document.getElementById("assistir");
 
-    for (let item of preferencias) {
+    for (let item of listadedesejo) {
         let imagemUrl = await buscarImagem(item.nome);
         let li = document.createElement("li");
         li.classList.add("cp");
