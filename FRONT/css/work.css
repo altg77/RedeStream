@@ -12,7 +12,7 @@ body {
 
 /*cabeçalho */
 header {
-    background-color: #0073b1;
+    background-color: #000000;
     padding: 10px 20px;
     color: white;
     display: flex;
@@ -42,10 +42,6 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-}
-
-.user-profile {
-    font-size: 24px;
 }
 
 header input {
@@ -101,7 +97,7 @@ header input {
 }
 
 .seguir {
-    background-color: #0073b1;
+    background-color: #000000;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -111,7 +107,7 @@ header input {
 }
 
 .seguir:hover {
-    background-color: #005582;
+    background-color: #2e2e2e;
 }
 
 .detalhes {
@@ -130,7 +126,7 @@ h3 {
 
 .categorias span {
     display: inline-block;
-    background-color: #0073b1;
+    background-color: #000000;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
