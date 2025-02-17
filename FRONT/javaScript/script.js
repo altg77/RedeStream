@@ -23,29 +23,34 @@ const listadedesejo = [
     { nome: "Fallout", categoria: "Série"}
 ]
 
-async function buscarImagem (nome) {
+async function buscarImagem(nome) {
     let url = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(nome)}`;
 
-    const r = await fetch(url);
+    try {
+        const r = await fetch(url);
         const dados = await r.json();
 
-        if(dados.results && dados.results > 0){
-            let imagemPath = dados.results[0].poster_path || dados.results[0].backdrop_path; 
+        if (dados.results && dados.results.length > 0) {
+            let imagemPath = dados.results[0].poster_path || dados.results[0].backdrop_path;
 
             if (imagemPath) {
                 return `https://image.tmdb.org/t/p/w200${imagemPath}`;
             }
         }
-        return "https://via.placeholder.com/80x120?text=Sem+Imagem";
+    } 
+    
+    catch (error) {
+        console.error("Erro ao buscar imagem:", error);
+    }
+
+    return "https://via.placeholder.com/80x120?text=Sem+Imagem";
 }
 
-async function carregarPreferencias() {
-    const lista = document.getElementById("preferidos");
-
-    for (let item of preferencias) {
+async function carregarLista(lista, array) {
+    for (let item of array) {
         let imagemUrl = await buscarImagem(item.nome);
         let li = document.createElement("li");
-        li.classList.add("cp");
+        li.classList.add("item");
 
         let img = document.createElement("img");
         img.src = imagemUrl;
@@ -56,30 +61,10 @@ async function carregarPreferencias() {
         li.appendChild(img);
         li.appendChild(texto);
         lista.appendChild(li);
-
     }
 }
 
-async function carregarListadedesejo() {
-    const lista = document.getElementById("assistir");
-
-    for (let item of listadedesejo) {
-        let imagemUrl = await buscarImagem(item.nome);
-        let li = document.createElement("li");
-        li.classList.add("cp");
-
-        let img = document.createElement("img");
-        img.src = imagemUrl;
-        img.alt = item.nome;
-
-        let texto = document.createTextNode(`${item.nome} (${item.categoria})`);
-
-        li.appendChild(img);
-        li.appendChild(texto);
-        lista.appendChild(li);
-
-    }
-}
-
-document.addEventListener("DOMContentLoaded", carregarPreferencias);
-document.addEventListener("DOMContentLoaded", carregarListadedesejo);
+document.addEventListener("DOMContentLoaded", () => {
+    carregarLista(document.getElementById("preferidos"), preferencias);
+    carregarLista(document.getElementById("assistir"), listadedesejo);
+});
