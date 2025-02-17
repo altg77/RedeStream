@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/FRONT/css/style2.css">
+    
+    <title>RedeStream</title>
+</head>
+<body>
+    <header>
+        <div class="logo">RedeStream</div>
+        <input type="text" placeholder="Pesquisar...">
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Rede</a></li>
+                <li><a href="/FRONT/html/sugestoes.html">Sugestões para mim</a></li>
+                <li><a href="/FRONT/html/index.html">Perfil</a></li>
+            </ul>
+        </nav>
+        <div class="user-profile">👤 Perfil</div> 
+    </header>
+
+    <div class ="ucontainer">
+
+        <div class="preferidos">
+                <h3>Sugestões para mim</h3>
+                <ol class="lista" id="sugestoes"></ol>
+        </div>
+    </div>
+
+</div>
+    
+</body>
+<script>
+    async function adicionarIndicacao() {
+    let categoria = document.getElementById("categoria").value;
+    let indicacao = document.getElementById("indicacao").value;
+    
+    if (indicacao.trim() !== "") {
+        let lista = document.getElementById("sugestoes");
+        let novoItem = document.createElement("li");
+        novoItem.classList.add("item");
+        
+        let imagem = document.createElement("img");
+        imagem.alt = indicacao;
+        imagem.src = await buscarImagemTMDb(indicacao);
+        
+        novoItem.appendChild(imagem);
+        novoItem.appendChild(document.createTextNode(` ${indicacao} (${categoria})`));
+        lista.appendChild(novoItem);
+    }
+    
+    document.getElementById("indicacao").value = "";
+}
+</script>
+<script src="/FRONT/javaScript/script.js"></script>
+</html>

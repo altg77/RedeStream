@@ -6,7 +6,6 @@
 }
 
 body {
-    background-color: #f3f2ef;
     color: #333;
     background-image: url('https://animenew.com.br/wp-content/uploads/2024/09/O-que-o-final-de-Jujutsu-Kaisen-significa-para-o-manga-1-jpg.webp'); /* Substitua pelo link da sua imagem */
     background-size: cover;
@@ -24,7 +23,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+
     width: 100%;
     top: 0;
     z-index: 1000;
@@ -58,15 +57,73 @@ header input {
 }
 
 /*Usuario */
+
 .ucontainer {
-    max-width: 900px;
-    margin: 20px auto;
+    max-width: 1200px;
+    margin: 10px auto;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     padding: 20px;
-    display: inline-block;
+    display: block;
+
+}
+
+.ucontainer2 {
+    max-width: 1200px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    display: block;
+
+}
+
+.ucontainer3 {
+    max-width: 1200px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    display: block;
+}
+
+.ucontainer4 {
+    max-width: 1200px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    display: block;
+}
+
+.ucontainer5 {
+    max-width: 1200px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    display: block;
+}
+
+.ucontainer6 {
+    max-width: 1200px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    display: block;
 }
 
 .usuario {
@@ -153,15 +210,72 @@ h3 {
 .item {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+    background: rgba(77, 77, 77, 0.1);
+    padding: 2px;
     border-radius: 8px;
     width: 100%;
-    max-width: 350px;
+    max-width: 220px;
 }
+
 .item img {
     width: 80px;
     height: 120px;
     margin-right: 10px;
     border-radius: 5px;
 }
+
+/* Formulario */
+#form-indicacao {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#form-indicacao label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+#form-indicacao input, 
+#form-indicacao select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+}
+
+#form-indicacao input[type="text"] {
+    height: 40px;
+}
+
+#form-indicacao button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+}
+
+#form-indicacao button:hover {
+    background-color: #1b1b1b;
+}
+
+#form-indicacao button:active {
+    background-color: #222222;
+}
+
+
+
+
+

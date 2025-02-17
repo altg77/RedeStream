@@ -1,7 +1,7 @@
 const TMDB_API_KEY = "94cf5c3fe8bf7f2d4c8b0df5b9adc973"; //KEY DO TMDb
 
 const preferencias = [
-    { nome: "The Flash", categoria: "Série"},
+    { nome: "Fate Stay Night", categoria: "Anime"},
     { nome: "Jujutsu Kaisen", categoria: "Anime"},
     { nome: "Demon Slayer", categoria: "Anime"},
     { nome: "Stranger Things", categoria: "Serie"},
@@ -62,6 +62,32 @@ async function carregarLista(lista, array) {
         li.appendChild(texto);
         lista.appendChild(li);
     }
+}
+
+document.getElementById("form-indicacao").addEventListener("submit", function(event) {
+    event.preventDefault();
+    adicionarIndicacao();
+});
+
+async function adicionarIndicacao() {
+    let categoria = document.getElementById("categoria").value;
+    let indicacao = document.getElementById("indicacao").value;
+    
+    if (indicacao.trim() !== "") {
+        let lista = document.getElementById("sugestoes");
+        let novoItem = document.createElement("li");
+        novoItem.classList.add("item");
+        
+        let imagem = document.createElement("img");
+        imagem.alt = indicacao;
+        imagem.src = await buscarImagem(indicacao);
+        
+        novoItem.appendChild(imagem);
+        novoItem.appendChild(document.createTextNode(` ${indicacao} (${categoria})`));
+        lista.appendChild(novoItem);
+    }
+    
+    document.getElementById("indicacao").value = "";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
