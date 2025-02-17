@@ -84,13 +84,6 @@ async function adicionarIndicacao() {
 
 }
 
-
-function salvarindicacao(indicacao, categoria){
-    let indicacoes = JSON.parse(localStorage.getItem("indicacoes")) || [];
-    indicacoes.push({indicacao, categoria});
-    localStorage.setItem("indicacoes", JSON.stringify(indicacoes));
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     carregarLista(document.getElementById("preferidos"), preferencias);
     carregarLista(document.getElementById("assistir"), listadedesejo);
