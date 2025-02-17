@@ -132,3 +132,28 @@ h3 {
     border-radius: 5px;
     margin: 5px 5px 0 0;
 }
+
+.lista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 350px;
+}
+.item img {
+    width: 80px;
+    height: 120px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
