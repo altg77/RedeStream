@@ -74,20 +74,21 @@ async function adicionarIndicacao() {
     let indicacao = document.getElementById("indicacao").value;
     
     if (indicacao.trim() !== "") {
-        let lista = document.getElementById("sugestoes");
-        let novoItem = document.createElement("li");
-        novoItem.classList.add("item");
-        
-        let imagem = document.createElement("img");
-        imagem.alt = indicacao;
-        imagem.src = await buscarImagem(indicacao);
-        
-        novoItem.appendChild(imagem);
-        novoItem.appendChild(document.createTextNode(` ${indicacao} (${categoria})`));
-        lista.appendChild(novoItem);
+        let indicacoes = JSON.parse(localStorage.getItem("indicacoes")) || [];
+        indicacoes.push({ nome: indicacao, categoria });
+        localStorage.setItem("indicacoes", JSON.stringify(indicacoes));
+
     }
-    
-    document.getElementById("indicacao").value = "";
+
+    alert("Indicação mandada!");
+
+}
+
+
+function salvarindicacao(indicacao, categoria){
+    let indicacoes = JSON.parse(localStorage.getItem("indicacoes")) || [];
+    indicacoes.push({indicacao, categoria});
+    localStorage.setItem("indicacoes", JSON.stringify(indicacoes));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

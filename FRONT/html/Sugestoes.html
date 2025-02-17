@@ -34,26 +34,30 @@
     
 </body>
 <script>
-    async function adicionarIndicacao() {
-    let categoria = document.getElementById("categoria").value;
-    let indicacao = document.getElementById("indicacao").value;
-    
-    if (indicacao.trim() !== "") {
-        let lista = document.getElementById("sugestoes");
-        let novoItem = document.createElement("li");
-        novoItem.classList.add("item");
-        
-        let imagem = document.createElement("img");
-        imagem.alt = indicacao;
-        imagem.src = await buscarImagemTMDb(indicacao);
-        
-        novoItem.appendChild(imagem);
-        novoItem.appendChild(document.createTextNode(` ${indicacao} (${categoria})`));
-        lista.appendChild(novoItem);
+    async function carregarIndicacoesSalvas() {
+    let lista = document.getElementById("sugestoes");
+    let indicacoes = JSON.parse(localStorage.getItem("indicacoes")) || [];
+
+    for (let item of indicacoes) {
+        let imagemUrl = await buscarImagem(item.nome);
+        let li = document.createElement("li");
+        li.classList.add("item");
+
+        let img = document.createElement("img");
+        img.src = imagemUrl;
+        img.alt = item.nome;
+
+        let texto = document.createTextNode(` ${item.nome} (${item.categoria})`);
+
+        li.appendChild(img);
+        li.appendChild(texto);
+        lista.appendChild(li);
     }
-    
-    document.getElementById("indicacao").value = "";
 }
+
+// Chama a função quando a página carregar
+document.addEventListener("DOMContentLoaded", carregarIndicacoesSalvas);
+
 </script>
 <script src="/FRONT/javaScript/script.js"></script>
 </html>
