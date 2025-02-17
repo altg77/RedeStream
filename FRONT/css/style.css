@@ -7,12 +7,24 @@
 
 body {
     color: #333;
-    background-image: url('https://animenew.com.br/wp-content/uploads/2024/09/O-que-o-final-de-Jujutsu-Kaisen-significa-para-o-manga-1-jpg.webp'); /* Substitua pelo link da sua imagem */
+    background-image: url('https://wallpapers.com/images/hd/jujutsu-kaisen-desktop-1a3i439pyjypjw17.jpg'); /* Substitua pelo link da sua imagem */
     background-size: cover;
     background-position: center;
     color: rgb(0, 0, 0);
     font-family: Arial, sans-serif;
     text-align: center;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(5px); 
+    z-index: -1; 
 }
 
 /*cabeçalho */
